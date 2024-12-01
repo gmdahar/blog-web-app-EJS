@@ -1,0 +1,26 @@
+<%- include("partials/header.ejs") %>
+<body>
+
+  <h3>All posts will be shown here </h3>
+
+  <% if (posts.length > 0) { %>
+    <ul>
+      <% posts.forEach(post => { %>
+        <li>
+          <h2><%= post.title %></h2>
+          <p><%= post.content %></p>
+          <a href="/edit/<%= post.id %>">Edit</a>
+  <form action="/delete/<%= post.id %>" method="POST" style="display:inline;">
+    <button type="submit">Delete</button>
+  </form>
+        </li>
+      <% }) %>
+    </ul>
+  <% } else { %>
+    <p>No posts available. Create a new post!</p>
+  <% } %>
+
+
+  
+
+  <%- include("partials/footer.ejs") %>

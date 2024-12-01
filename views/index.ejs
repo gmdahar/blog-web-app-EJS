@@ -1,0 +1,39 @@
+<%- include("partials/header.ejs") %>
+<body>
+
+
+  <% if (posts.length > 0) { %>
+    <ul>
+      <% posts.forEach(post => { %>
+        <li class="post-items">
+          <h2><%= post.title %></h2>
+          <p><%= post.content %></p>
+          <a href="/edit/<%= post.id %>">Edit</a>
+  <form action="/delete/<%= post.id %>" method="POST" style="display:inline;">
+    <button type="submit">Delete</button>
+  </form>
+        </li>
+      <% }) %>
+    </ul>
+  <% } else { %>
+    <p>No posts available. Create a new post!</p>
+  <% } %>
+
+  <h2>Create a New Post</h2>
+ <form action="/new-post" method="POST">     <!-- action here is the route  -->
+  <label for="title">Post Title:</label>
+  <input type="text" id="title" name="title" required>
+  <br><br>
+  <label for="content">Post Content:</label>
+  <textarea id="content" name="content" rows="4" required></textarea>
+  <br><br>
+  <button type="submit">Add Post</button>
+</form>
+
+
+  <%- include("partials/footer.ejs") %>
+  
+
+
+
+
